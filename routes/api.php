@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddToCart\CartController;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Product\ProductController;
@@ -41,6 +42,14 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('/product/list','productListing')->name('productListing');
         Route::post('/edit/product','editProduct')->name('editProduct');
         Route::post('/update/product','updateProduct')->name('updateProduct');
+    });
+
+    Route::controller(CartController::class)->group(function(){
+        Route::get('/cart/list','cartList')->name('cartList');
+        Route::post('/addtoCart','cart')->name('cart');
+        Route::post('/update/quantity','productQuantity')->name('quantity');
+        Route::post('/single/delete','singleDelete')->name('singleDelete');
+        Route::post('/bulk/delete','bulkDelete')->name('bulkDelete');
     });
 });
 
