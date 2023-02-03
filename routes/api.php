@@ -4,6 +4,7 @@ use App\Http\Controllers\AddToCart\CartController;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Shipment\ShipmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,14 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::post('/update/quantity','productQuantity')->name('quantity');
         Route::post('/single/delete','singleDelete')->name('singleDelete');
         Route::post('/bulk/delete','bulkDelete')->name('bulkDelete');
+    });
+
+    Route::controller(ShipmentController::class)->group(function(){
+        Route::post('/create/shipment','createAddress')->name('createShipment');
+        Route::get('/address/list','addressList')->name('list');
+        Route::post('/update/shipment/address','updateAddress')->name('createShipment');
+        Route::post('/delete/address','deleteAddress')->name('deleteAddress');
+
     });
 });
 
