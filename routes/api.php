@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddToCart\CartController;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Shipment\ShipmentController;
 use Illuminate\Http\Request;
@@ -60,6 +61,10 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::post('/delete/address','deleteAddress')->name('deleteAddress');
 
     });
+
+    Route::post('/pay', [PaymentController::class, 'pay'])->name('payment');
+    Route::get('/success', [PaymentController::class, 'success'])->name('success');
+    Route::get('error', [PaymentController::class, 'error'])->name('error');
 });
 
 Route::controller(ApiController::class)->group(function(){
