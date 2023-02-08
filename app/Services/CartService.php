@@ -34,7 +34,6 @@ class CartService{
     }
 
     public function productQuantity($request){
-        // dd($request->all());
         if ($request->quantity < 1) {
             return response()->error('Quantity must be Greater then 1');
         }else{
@@ -61,7 +60,6 @@ class CartService{
     public function bulkDelete($request){
         $user = Auth::id();
         $data = Cart::where('customer_id',$user)->delete();
-        // dd($data);
         if ($data) {
             return response()->success('Products Deleted Successfully');
         }else{

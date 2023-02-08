@@ -23,16 +23,8 @@ class CustomerController extends Controller
         public function register(RegisterUserRequest $request){
             $response = $this->customerService->register($request);
             if ($response) {
-                // return response()->json([
-                //     'status' => 'True',
-                //     'Message' => 'Please Check Your Email To Confirm Account Registration',
-                // ]);
                 return response()->success('Please Check Your Email To Confirm Account Registration');
             }else{
-                // return response()->json([
-                //     'status' => 'False',
-                //     'Message' => 'Something Went Wrong.',
-                // ]);
                 return response()->error('Something Went Wrong...!');
             }
         }
@@ -40,13 +32,8 @@ class CustomerController extends Controller
         //Login
         public function verifyOtp(CustomerOtpRequest $request)
         {
-            // dd($request);
             $result = $this->customerService->verifyOtp($request);
             if ($result == true) {
-                // return response()->json([
-                //     'status' => 'True',
-                //     'Message' => 'Account Verified Successfully',
-                // ]);
                 return response()->success('Account Verified Successfully');
             } else {
                 return response()->error('Something Went Wrong...!');
@@ -70,16 +57,8 @@ class CustomerController extends Controller
         public function updatePasswordRequest(CustomerUpdatePasswordRequest $request){
             $response = $this->customerService->updatePasswordRequest($request);
             if ($response==true) {
-                // return response()->json([
-                //     'status' => 'True',
-                //     'Message' => 'Check Your Email For Further Process',
-                // ]);
                 return response()->success('Check Your Email For Further Process');
             }else {
-                // return response()->json([
-                //     'status' => 'False',
-                //     'Message' => 'Something Went Wrong',
-                // ]);
                 return response()->error('Something Went Wrong');
             }
         }
@@ -87,16 +66,8 @@ class CustomerController extends Controller
         public function updatePassword(CustomerNewPasswordRequest $request){
             $response  =  $this->customerService->updatePassword($request);
             if ($response) {
-                // return response()->json([
-                //     'status' => 'True',
-                //     'Message' => 'Password Updated Successfully',
-                // ]);
                 return response()->success('Password Updated Successfully');
             }else {
-                // return response()->json([
-                //     'status' => 'False',
-                //     'Message' => 'Something Went Wrong',
-                // ]);
                 return response()->error('Something Went Wrong');
             }
         }

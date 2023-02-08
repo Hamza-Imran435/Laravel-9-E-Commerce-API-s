@@ -23,15 +23,9 @@ class ApiService{
         $result['otp'] = $random;
         $result['password'] = Hash::make($result['password']);
         $user=User::create($result);
-        // dd($data);
-        // $result->save();
-        // dd($data);
-        // $data = implode($data);
         dispatch(new AccountVerificationJob($data));
-        // $token = $user->createToken($request->password);
         $response =[
             'user' => $result,
-            // 'token' => $token->plainTextToken
         ];
         return $response;
     }
@@ -39,7 +33,6 @@ class ApiService{
     public function verifyOtp($request){
 
         $user = User::where('otp',$request->otp )->where('email',$request->email)->first();
-        // dd($user);
         if ($user) {
             $user->otp = null ;
             $user->email_verified = 1;
