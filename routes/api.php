@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddToCart\CartController;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Shipment\ShipmentController;
@@ -28,6 +29,9 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::controller(ApiController::class)->group(function(){
     Route::post('/logout','logout')->name('logout');
+    });
+    Route::controller(CustomerController::class)->group(function(){
+    Route::post('/customer/logout','logout')->name('logout');
     });
 
     Route::controller(CategoryController::class)->group(function(){
@@ -73,4 +77,12 @@ Route::controller(ApiController::class)->group(function(){
     Route::post('/login','login')->name('login');
     Route::post('/update/password','updatePasswordRequest')->name('update');
     Route::post('/update','updatePassword')->name('updated');
+});
+
+Route::controller(CustomerController::class)->group(function(){
+    Route::post('/customer/register','register')->name('register');
+    Route::post('/verify/customer/account','verifyOtp')->name('verifyOtp');
+    Route::post('/customer/login','login')->name('login');
+    Route::post('/customer/update/password','updatePasswordRequest')->name('update');
+    Route::post('/customer/update','updatePassword')->name('updated');
 });
