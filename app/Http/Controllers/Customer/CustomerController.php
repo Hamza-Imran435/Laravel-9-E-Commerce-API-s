@@ -61,14 +61,8 @@ class CustomerController extends Controller
         //Logout
         public function logout(Request $request)
         {
-            // dd($request);
-            // $user = User::find($request->id);
+            session()->forget('user_token');
             $request->user()->currentAccessToken()->delete();
-            // $user->tokens()->delete();
-            // return response()->json([
-            //     'status' => 'True',
-            //     'Message' => 'LogOut Successfully',
-            // ]);
             return response()->success('LogOut Successfully');
         }
 

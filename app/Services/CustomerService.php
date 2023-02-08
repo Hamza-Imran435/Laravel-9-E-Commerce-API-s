@@ -64,6 +64,7 @@ class CustomerService{
                 return $error;
             } else {
                 $token = $user->createToken($request->password);
+                session(['user_token' => $token]);
                 $response =[
                     'status' => 'true',
                     'message' => 'Login Token',
