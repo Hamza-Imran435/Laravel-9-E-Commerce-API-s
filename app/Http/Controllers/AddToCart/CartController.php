@@ -37,4 +37,9 @@ class CartController extends Controller
         $response = $this->cartService->bulkDelete($request);
         return $response;
     }
+
+    public function ProductQuantityUpdate(ProductQuantityrequest $request){
+        $response = $this->cartService->ProductQuantityUpdate($request);
+        return $response;
+    }
 }

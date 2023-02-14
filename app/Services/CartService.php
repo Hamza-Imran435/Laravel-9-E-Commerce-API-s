@@ -66,4 +66,19 @@ class CartService{
             return response()->error('Something Went Wrong');
         }
     }
+
+    public function ProductQuantityUpdate($request){
+        if ($request->quantity < 1) {
+            return response()->error('Quantity must be Greater then 1');
+        }else{
+        $user = Auth::id();
+        $product = Cart::where('product_id',$request->product_id)->where('customer_id',$user)->first();
+        $productQuantity = $product->quantity;
+        $productQuantity = $productQuantity + $request->quantity;
+        $product->quantity = $productQuantity;
+        $product->save();
+        return response()->success('Product Quantity Updated Successfully');
+        }
+
+    }
 }
