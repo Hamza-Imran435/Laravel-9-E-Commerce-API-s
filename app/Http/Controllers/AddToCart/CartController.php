@@ -42,4 +42,9 @@ class CartController extends Controller
         $response = $this->cartService->ProductQuantityUpdate($request);
         return $response;
     }
+
+    public function deleteQuantity(ProductQuantityrequest $request){
+        $response = $this->cartService->deleteQuantity($request);
+        return $response;
+    }
 }

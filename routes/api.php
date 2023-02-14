@@ -55,6 +55,7 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::post('/addtoCart','cart')->name('cart');
         Route::post('/update/quantity','productQuantity')->name('quantity');
         Route::post('/update/product/quantity','ProductQuantityUpdate')->name('product.quantity');
+        Route::post('/delete/product/quantity','deleteQuantity')->name('product.quantityDelete');
         Route::post('/single/delete','singleDelete')->name('singleDelete');
         Route::post('/bulk/delete','bulkDelete')->name('bulkDelete');
     });

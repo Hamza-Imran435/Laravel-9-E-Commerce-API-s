@@ -81,4 +81,24 @@ class CartService{
         }
 
     }
+
+    public function deleteQuantity($request){
+        if ($request->quantity < 1) {
+            return response()->error('Quantity must be Greater then 1');
+        }else{
+        $user = Auth::id();
+        $product = Cart::where('product_id',$request->product_id)->where('customer_id',$user)->first();
+        $productQuantity = $product->quantity;
+        $productQuantity = $productQuantity - $request->quantity;
+        $product->quantity = $productQuantity;
+        $product->save();
+        if ($product->quantity < 0) {
+            $product->quantity = 1;
+            $product->save();
+            return response()->success('Product Quantity will be not be in Negative Number');
+        }else{
+            return response()->success('Product Quantity Updated Successfully');
+        }
+        }
+    }
 }
